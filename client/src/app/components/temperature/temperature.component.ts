@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpErrorResponse } from '@angular/common/http';
 import { NgForm } from '@angular/forms';
-import { FormControl, Validators } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material';
 
 import { ConfirmDialogComponent } from '../confirm-dialog/confirm-dialog.component';
@@ -19,22 +19,27 @@ declare var M: any;
   providers: [TemperatureService]
 })
 export class TemperatureComponent implements OnInit {
-
-  private numValueFormCtr = new FormControl('', [Validators.required, Validators.nullValidator]);
-  private temperature: TemperatureBase;
+  public temperatureForm: FormGroup;
   private temperatures: Temperature[];
   private loadingLogs: boolean;
   private loadingStatistics: boolean;
   private statistics: Statistics;
 
   constructor(private temperatureService: TemperatureService, public dialog: MatDialog) { 
-    this.temperature = new TemperatureBase();
     this.statistics = new Statistics();
     this.loadingLogs = false;
   }
 
   ngOnInit() {
+    this.temperatureForm = new FormGroup({
+      temperature: new FormControl('', [Validators.required, Validators.max(100), Validators.min(-100)])
+    });
+
     this.loadData();
+  }
+
+  public hasError = (controlName: string, errorName: string) =>{
+    return this.temperatureForm.controls[controlName].hasError(errorName);
   }
 
   public loadData(){
@@ -52,6 +57,7 @@ export class TemperatureComponent implements OnInit {
     },
     (error: HttpErrorResponse) => {
       this.showErrorMessage('loading logs', error);
+      this.temperatures = [];
       this.loadingLogs = false;
     });
   }
@@ -66,20 +72,26 @@ export class TemperatureComponent implements OnInit {
     },
     (error: HttpErrorResponse) => {
       this.showErrorMessage('loading statistics', error);
+      this.statistics.average = null;
       this.loadingStatistics = false;
     });
   }
 
   public addLog(){
-    this.temperatureService.postLog(this.temperature)
-          .subscribe((response: any) => {
-            this.showSuccessMessage('Successfully added');
-            this.loadData();
-            this.temperature = new TemperatureBase();
-          },
-          (error: HttpErrorResponse) => {
-            this.showErrorMessage('adding temperature', error);
-          });
+    if (this.temperatureForm.valid){
+      var temperature = new TemperatureBase();
+      temperature.value = this.temperatureForm.value.temperature;
+
+      this.temperatureService.postLog(temperature)
+      .subscribe((response: any) => {
+        this.showSuccessMessage('Successfully added');
+        this.temperatureForm.reset();
+        this.loadData();
+      },
+      (error: HttpErrorResponse) => {
+        this.showErrorMessage('adding temperature', error);
+      });
+    }    
   }
 
   public deleteLog(id: string){
@@ -100,7 +112,7 @@ export class TemperatureComponent implements OnInit {
             this.loadData();
           },
           (error: HttpErrorResponse) => {
-            this.showErrorMessage('delting temperature', error);
+            this.showErrorMessage('deleting temperature', error);
           });    
     });
   }

@@ -1,3 +1,21 @@
+.mat-form-field{
+    width: 100%;
+}
+
 .btn.btn-add{
     margin-top: 25px;
+}
+
+input[type=number].mat-input-element{
+    border-bottom: none;
+    box-shadow: none;
+    margin-bottom: 0;
+
+    &:focus,
+    &:focus:not([readonly]),
+    &:not(.browser-default)[readonly="readonly"]
+    {
+        border-bottom: none;
+        box-shadow: none;
+    }
 }

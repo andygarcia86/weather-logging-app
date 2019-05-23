@@ -1,8 +1,7 @@
+const config = require('./config/config.js');
 const mongoose = require ('mongoose');
 
-const URI = 'mongodb://localhost/weather-logging';
-
-mongoose.connect(URI)
+mongoose.connect(global.gConfig.database_uri)
     .then(db => console.log('DB is connected'))
     .catch(err => console.log(err));
 

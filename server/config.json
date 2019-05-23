@@ -1,0 +1,17 @@
+{
+    "development": {
+        "node_port": 3000,
+        "allow_cors": "http://localhost:4200",
+        "database_uri": "mongodb://localhost/weather-logging"
+    },
+    "staging": {
+        "node_port": 8080,
+        "allow_cors": "http://localhost:4200",
+        "database_uri": "mongodb://localhost/weather-logging"
+    },
+    "production": {
+        "node_port": 8080,
+        "allow_cors": "http://localhost:4200",
+        "database_uri": "mongodb://localhost/weather-logging"
+    }
+}
