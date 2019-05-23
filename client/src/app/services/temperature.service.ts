@@ -1,32 +1,36 @@
+import { EventEmitter, Output } from '@angular/core';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { TemperatureBase } from '../models/temperature.base';
 import { Temperature } from '../models/temperature';
+import { AppConfig } from './app.config';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TemperatureService {
 
-  readonly API_BASE_URL = 'http://localhost:3000/api/';
+  @Output() change: EventEmitter<boolean> = new EventEmitter();
+  
+  protected apiServer = AppConfig.settings.apiServer;
 
   constructor(private http: HttpClient) { 
   }
 
   public getLogs(): any{
-    return this.http.get<Temperature[]>(this.API_BASE_URL);
+    return this.http.get<Temperature[]>(this.apiServer.uri);
   }
 
   public getStatistics(){
-    return this.http.get(this.API_BASE_URL + 'statistics');
+    return this.http.get(this.apiServer.uri + 'statistics');
   }
 
   public postLog(temperature: TemperatureBase){
-    return this.http.post<TemperatureBase>(this.API_BASE_URL, temperature);
+    return this.http.post<TemperatureBase>(this.apiServer.uri, temperature);
   }
 
   public deleteLog(id: string){
-    return this.http.delete(this.API_BASE_URL + id);
+    return this.http.delete(this.apiServer.uri + id);
   }
 
 }

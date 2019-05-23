@@ -1,0 +1,46 @@
+  <div class="row">
+    <div class="col s12 m6 l3">
+      <div class="card">
+        <div class="card-content center">
+            <div *ngIf="!loading">Average: 
+              <span *ngIf="statistics.average">{{ statistics.average | number : '1.0-2' }} °c</span>
+              <span *ngIf="!statistics.average">N/A</span>
+            </div>
+            <app-spinner *ngIf="loading"></app-spinner>
+        </div>
+      </div>
+    </div>
+    <div class="col s12 m6 l3">
+      <div class="card">
+        <div class="card-content center">
+            <div *ngIf="!loading">Highest: 
+              <span *ngIf="statistics.highest">{{ statistics.highest | number : '1.0-2' }} °c</span>
+              <span *ngIf="!statistics.highest">N/A</span>
+            </div>
+            <app-spinner *ngIf="loading"></app-spinner>
+        </div>
+      </div>
+    </div>
+    <div class="col s12 m6 l3">
+      <div class="card">
+        <div class="card-content center">
+            <div *ngIf="!loading">Lowest: 
+              <span *ngIf="statistics.lowest">{{ statistics.lowest | number : '1.0-2' }} °c</span>
+              <span *ngIf="!statistics.lowest">N/A</span>
+            </div>
+            <app-spinner *ngIf="loading"></app-spinner>
+        </div>
+      </div>
+    </div>
+    <div class="col s12 m6 l3">
+      <div class="card">
+        <div class="card-content center">
+            <div *ngIf="!loading">Median: 
+              <span *ngIf="statistics.median">{{ statistics.median | number : '1.0-2' }} °c</span>
+              <span *ngIf="!statistics.median">N/A</span>
+            </div>
+            <app-spinner *ngIf="loading"></app-spinner>
+        </div>
+      </div>
+    </div>
+  </div>

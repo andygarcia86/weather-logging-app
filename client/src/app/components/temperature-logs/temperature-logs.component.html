@@ -1,0 +1,32 @@
+<div class="card">
+  <div class="card-content">
+
+    <div *ngIf="loading" class="center">
+      <app-spinner></app-spinner>
+    </div>
+
+    <div *ngIf="!loading && temperatures.length == 0" class="center">
+      There are no records to show.
+    </div>
+
+    <table *ngIf="!loading && temperatures.length > 0" class="striped">
+      <thead>
+        <tr>
+            <th>Date</th>
+            <th>Temperature</th>
+            <th></th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr *ngFor="let temperature of temperatures">
+          <td>{{ temperature.dateLogged | date: 'MMM dd, yyyy'}}</td>
+          <td>{{ temperature.value | number : '1.0-2' }} °c</td>
+          <td>
+              <button class="btn waves-effect waves-light btn-small right" type="button" name="action" (click)="deleteLog(temperature._id)">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

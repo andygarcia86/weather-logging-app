@@ -1,0 +1,21 @@
+<div class="card">
+  <div class="card-content">
+    <form [formGroup]="temperatureForm" autocomplete="off" (ngSubmit)="addLog()">
+      <div class="row">
+        <div class="col s12 m6 l4">
+          <mat-card-content>
+            <mat-form-field>
+              <input matInput type="number" placeholder="Enter temperature" formControlName="temperature" id="temperature" class="temperature-value" />
+              <mat-error *ngIf="hasError('temperature', 'max')">Temperature should be less than 100 °c</mat-error>
+              <mat-error *ngIf="hasError('temperature', 'min')">Temperature should be more than -100 °c</mat-error>
+              <mat-error *ngIf="hasError('temperature', 'required')">* A valid number is required</mat-error>
+            </mat-form-field>
+          </mat-card-content>
+        </div>
+        <div class="col s12 m6 l8">
+          <button class="btn btn-add waves-effect waves-light" type="submit" name="action" [disabled]="!temperatureForm.valid">Add Temperature</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
