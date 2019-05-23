@@ -2,7 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { HttpErrorResponse } from '@angular/common/http';
 import { NgForm } from '@angular/forms';
 import { FormControl, Validators } from '@angular/forms';
+import { MatDialog } from '@angular/material';
 
+import { ConfirmDialogComponent } from '../confirm-dialog/confirm-dialog.component';
 import { Statistics } from 'src/app/models/statistics';
 import { TemperatureBase } from 'src/app/models/temperature.base';
 import { Temperature } from 'src/app/models/temperature';
@@ -25,7 +27,7 @@ export class TemperatureComponent implements OnInit {
   private loadingStatistics: boolean;
   private statistics: Statistics;
 
-  constructor(private temperatureService: TemperatureService) { 
+  constructor(private temperatureService: TemperatureService, public dialog: MatDialog) { 
     this.temperature = new TemperatureBase();
     this.statistics = new Statistics();
     this.loadingLogs = false;
@@ -81,7 +83,18 @@ export class TemperatureComponent implements OnInit {
   }
 
   public deleteLog(id: string){
-    this.temperatureService.deleteLog(id)
+    const data = {
+      title: 'Delete confirmation',
+      text: 'Are you sure you want to remove this log?'
+    };
+
+    const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+      width: '450px',
+      data: data
+    });
+
+    dialogRef.componentInstance.event.subscribe((result) => {
+      this.temperatureService.deleteLog(id)
           .subscribe((response: any) => {
             this.showSuccessMessage('Successfully deleted');
             this.loadData();
@@ -89,6 +102,7 @@ export class TemperatureComponent implements OnInit {
           (error: HttpErrorResponse) => {
             this.showErrorMessage('delting temperature', error);
           });    
+    });
   }
 
   private showSuccessMessage(msg: string){
@@ -99,5 +113,5 @@ export class TemperatureComponent implements OnInit {
     M.toast({html: '): An unexpected error occurred ' + msg + '. <br>Please try again', classes: 'red lighten-2'});
     console.log(error);              
   }
-
+  
 }

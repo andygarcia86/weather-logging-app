@@ -26,7 +26,10 @@
     <div class="col s12 m6 l3">
       <div class="card">
         <div class="card-content center">
-            <div *ngIf="!loadingStatistics">Average: {{ statistics.average | number : '1.0-2' }} °c</div>
+            <div *ngIf="!loadingStatistics">Average: 
+              <span *ngIf="temperatures.length > 0">{{ statistics.average | number : '1.0-2' }} °c</span>
+              <span *ngIf="temperatures.length == 0">N/A</span>
+            </div>
             <app-spinner *ngIf="loadingStatistics"></app-spinner>
         </div>
       </div>
@@ -34,7 +37,10 @@
     <div class="col s12 m6 l3">
       <div class="card">
         <div class="card-content center">
-            <div *ngIf="!loadingStatistics">Highest: {{ statistics.highest | number : '1.0-2' }} °c</div>
+            <div *ngIf="!loadingStatistics">Highest: 
+              <span *ngIf="temperatures.length > 0">{{ statistics.highest | number : '1.0-2' }} °c</span>
+              <span *ngIf="temperatures.length == 0">N/A</span>
+            </div>
             <app-spinner *ngIf="loadingStatistics"></app-spinner>
         </div>
       </div>
@@ -42,7 +48,10 @@
     <div class="col s12 m6 l3">
       <div class="card">
         <div class="card-content center">
-            <div *ngIf="!loadingStatistics">Lowest: {{ statistics.lowest | number : '1.0-2' }} °c</div>
+            <div *ngIf="!loadingStatistics">Lowest: 
+              <span *ngIf="temperatures.length > 0">{{ statistics.lowest | number : '1.0-2' }} °c</span>
+              <span *ngIf="temperatures.length == 0">N/A</span>
+            </div>
             <app-spinner *ngIf="loadingStatistics"></app-spinner>
         </div>
       </div>
@@ -50,7 +59,10 @@
     <div class="col s12 m6 l3">
       <div class="card">
         <div class="card-content center">
-            <div *ngIf="!loadingStatistics">Median: {{ statistics.median | number : '1.0-2' }} °c</div>
+            <div *ngIf="!loadingStatistics">Median: 
+              <span *ngIf="temperatures.length > 0">{{ statistics.median | number : '1.0-2' }} °c</span>
+              <span *ngIf="temperatures.length == 0">N/A</span>
+            </div>
             <app-spinner *ngIf="loadingStatistics"></app-spinner>
         </div>
       </div>

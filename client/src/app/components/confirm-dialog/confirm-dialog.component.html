@@ -1,0 +1,8 @@
+<h1 mat-dialog-title>{{data.title}}</h1>
+<div mat-dialog-content>
+  <p [innerHTML]="data.text"></p>
+</div>
+<div mat-dialog-actions class="right">
+  <button (click)="delete()" class="btn waves-effect waves-light btn-small">Yes</button>
+  <button (click)="cancel()" class="btn waves-effect waves-light btn-flat btn-small">No</button>
+</div>
