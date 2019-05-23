@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Statistics } from 'src/app/models/statistics';
 import { TemperatureService } from '../../services/temperature.service';
@@ -13,7 +13,9 @@ export class StatisticsWidgetComponent implements OnInit {
   private statistics: Statistics;
   private loading: boolean;
 
-  constructor(private temperatureService: TemperatureService) { 
+  @Input() temperatureService: TemperatureService;
+
+  constructor() { 
     this.loading = false;
   }
 

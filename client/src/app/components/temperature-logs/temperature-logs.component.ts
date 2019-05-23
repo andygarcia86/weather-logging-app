@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { HttpErrorResponse } from '@angular/common/http';
 import { MatDialog } from '@angular/material';
 
@@ -16,7 +16,9 @@ export class TemperatureLogsComponent implements OnInit {
   private loading: boolean;
   private temperatures: Temperature[];
 
-  constructor(private temperatureService: TemperatureService, public dialog: MatDialog) { 
+  @Input() temperatureService: TemperatureService;
+
+  constructor(public dialog: MatDialog) { 
     this.loading = false;
   }
 

@@ -17,6 +17,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { StatisticsWidgetComponent } from './components/statistics-widget/statistics-widget.component';
 import { TemperatureLogsComponent } from './components/temperature-logs/temperature-logs.component';
 
+import { TemperatureService } from './services/temperature.service';
+
 export function initializeApp(appConfig: AppConfig) {
   return () => appConfig.load();
 }
@@ -47,6 +49,7 @@ export function initializeApp(appConfig: AppConfig) {
     ConfirmDialogComponent
   ],
   providers: [
+    TemperatureService,
     AppConfig,
        { provide: APP_INITIALIZER,
          useFactory: initializeApp,

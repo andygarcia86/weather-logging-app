@@ -5,9 +5,7 @@ import { TemperatureBase } from '../models/temperature.base';
 import { Temperature } from '../models/temperature';
 import { AppConfig } from './app.config';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class TemperatureService {
 
   @Output() change: EventEmitter<boolean> = new EventEmitter();

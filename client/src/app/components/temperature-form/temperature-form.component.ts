@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { HttpErrorResponse } from '@angular/common/http';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { TemperatureBase } from 'src/app/models/temperature.base';
@@ -15,8 +15,10 @@ declare var M: any;
 export class TemperatureFormComponent implements OnInit {
   public temperatureForm: FormGroup;
   private loading: boolean;
-    
-  constructor(private temperatureService: TemperatureService) { 
+  
+  @Input() temperatureService: TemperatureService;
+
+  constructor() { 
     this.loading = false;
   }
 
@@ -37,23 +39,15 @@ export class TemperatureFormComponent implements OnInit {
 
       this.temperatureService.postLog(temperature)
       .subscribe((response: any) => {
-        this.showSuccessMessage('Successfully added');
+        M.toast({html: 'Successfully added', classes: 'blue lighten-2'});
         this.temperatureService.change.emit();
         this.temperatureForm.reset();
       },
       (error: HttpErrorResponse) => {
-        this.showErrorMessage('adding temperature', error);
+        M.toast({html: '): An unexpected error occurred adding temperature. <br>Please try again', classes: 'red lighten-2'});
+        console.log(error);              
       });
     }    
-  }
-
-  private showSuccessMessage(msg: string){
-    M.toast({html: msg, classes: 'blue lighten-2'});
-  }
-
-  private showErrorMessage(msg: string, error: HttpErrorResponse){
-    M.toast({html: '): An unexpected error occurred ' + msg + '. <br>Please try again', classes: 'red lighten-2'});
-    console.log(error);              
   }
 
 }
