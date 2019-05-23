@@ -3,11 +3,11 @@
   "info": {
     "version": "1.0",
     "title": "Weather Logging RestApi",
-    "description": "TODO: Add Description",
+    "description": "Weather logging rest api that allows users to enter temperatures in order to calculate its median, average, highest and lowest points.",
     "contact": {}
   },
-  "host": "example.com",
-  "basePath": "/",
+  "host": "localhost:3000",
+  "basePath": "/api",
   "schemes": [
     "http"
   ],
@@ -20,6 +20,7 @@
   "paths": {
     "/": {
       "get": {
+        "tags": ["Temperature"],
         "description": "Returns logged temperatures",
         "summary": "Get Temperature Logs",
         "operationId": "UnnammedEndpointGet",
@@ -36,6 +37,7 @@
         }
       },
       "post": {
+        "tags": ["Temperature"],
         "description": "Add new temperature log",
         "summary": "Add Temperature Log",
         "operationId": "UnnammedEndpointPost",
@@ -52,13 +54,6 @@
             "schema": {
               "$ref": "#/definitions/AddTemperatureLogRequest"
             }
-          },
-          {
-            "name": "Content-Type",
-            "in": "header",
-            "required": true,
-            "type": "string",
-            "description": ""
           }
         ],
         "responses": {
@@ -71,6 +66,7 @@
     },
     "/statistics": {
       "get": {
+        "tags": ["Temperature"],
         "description": "Returns logged temperatures",
         "summary": "Get Temperature Statistics",
         "operationId": "StatisticsGet",
@@ -87,19 +83,20 @@
         }
       }
     },
-    "/5ce57e78d65d5e60f8490b26": {
+    "/{id}": {
       "delete": {
-        "description": "Add new temperature log",
+        "tags": ["Temperature"],
+        "description": "Delete temperature log",
         "summary": "Delete Temperature Log",
-        "operationId": "5ce57e78d65d5e60f8490b26Delete",
+        "operationId": "id",
         "deprecated": false,
         "produces": [
           "application/json"
         ],
         "parameters": [
           {
-            "name": "Content-Type",
-            "in": "header",
+            "name": "id",
+            "in": "path",
             "required": true,
             "type": "string",
             "description": ""
@@ -116,7 +113,7 @@
   },
   "definitions": {
     "AddTemperatureLogRequest": {
-      "title": "AddTemperatureLogRequest",
+      "title": "Add Temperature Log Request",
       "example": {
         "value": 32
       },
@@ -132,5 +129,9 @@
       ]
     }
   },
-  "tags": []
+  "tags": [{
+      "name": "Temperature",
+      "description": "Temperature logs management"
+    }
+  ]
 }
