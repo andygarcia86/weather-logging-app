@@ -1,0 +1,98 @@
+<br>
+
+<div class="container">
+  <div class="row">
+    <div class="col s12">
+      <div class="card">
+        <div class="card-content">
+          <form (ngSubmit)="addLog()">
+            <div class="row">
+              <div class="input-field col s12 m6">
+                <input type="number" name="temperature" id="temperature" class="validate" required #name="ngModel" [(ngModel)]="temperature.value" [ngModelOptions]="{standalone: true}" />
+                <label for="temperature">Enter temperature</label>
+                <span class="red-text" *ngIf="!temperature.value">* This field is required</span>
+              </div>
+              <div class="col s12 m6">
+                <button class="btn btn-add waves-effect waves-light" type="submit" name="action" [ngClass]="{'disabled': !temperature.value}">Add Temperature</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col s12 m6 l3">
+      <div class="card">
+        <div class="card-content center">
+            <div *ngIf="!loadingStatistics">Average: {{ statistics.average | number : '1.0-2' }} °c</div>
+            <app-spinner *ngIf="loadingStatistics"></app-spinner>
+        </div>
+      </div>
+    </div>
+    <div class="col s12 m6 l3">
+      <div class="card">
+        <div class="card-content center">
+            <div *ngIf="!loadingStatistics">Highest: {{ statistics.highest | number : '1.0-2' }} °c</div>
+            <app-spinner *ngIf="loadingStatistics"></app-spinner>
+        </div>
+      </div>
+    </div>
+    <div class="col s12 m6 l3">
+      <div class="card">
+        <div class="card-content center">
+            <div *ngIf="!loadingStatistics">Lowest: {{ statistics.lowest | number : '1.0-2' }} °c</div>
+            <app-spinner *ngIf="loadingStatistics"></app-spinner>
+        </div>
+      </div>
+    </div>
+    <div class="col s12 m6 l3">
+      <div class="card">
+        <div class="card-content center">
+            <div *ngIf="!loadingStatistics">Median: {{ statistics.median | number : '1.0-2' }} °c</div>
+            <app-spinner *ngIf="loadingStatistics"></app-spinner>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col s12">
+      <div class="card">
+        <div class="card-content">
+
+          <div *ngIf="loadingLogs" class="center">
+            <app-spinner></app-spinner>
+          </div>
+
+          <div *ngIf="!loadingLogs && temperatures.length == 0" class="center">
+            There are no records to show.
+          </div>
+
+          <table *ngIf="!loadingLogs && temperatures.length > 0" class="striped">
+            <thead>
+              <tr>
+                  <th>Date</th>
+                  <th>Temperature</th>
+                  <th></th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr *ngFor="let temperature of temperatures">
+                <td>{{ temperature.dateLogged | date: 'MMM dd, yyyy'}}</td>
+                <td>{{ temperature.value | number : '1.0-2' }} °c</td>
+                <td>
+                   <button class="btn waves-effect waves-light btn-small right" type="button" name="action" (click)="deleteLog(temperature._id)">Delete</button>
+                </td>
+              </tr>
+                            
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

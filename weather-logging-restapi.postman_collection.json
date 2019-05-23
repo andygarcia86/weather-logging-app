@@ -1,0 +1,122 @@
+{
+	"id": "751f3449-7913-1fdb-2b60-2ca72804d399",
+	"name": "Weather Logging RestApi",
+	"description": "",
+	"order": [
+		"9da8c7ed-7229-187e-ae2a-ae6d60671591",
+		"330da27a-97e7-d4a8-5bf4-4a3cd1530aaa",
+		"461f9f3a-b662-0d11-f034-1c280b5424a7",
+		"585c9628-ff6e-0f0a-a145-d9497f50307b"
+	],
+	"folders": [],
+	"folders_order": [],
+	"timestamp": 1558539526008,
+	"owner": "624133",
+	"public": false,
+	"requests": [
+		{
+			"id": "330da27a-97e7-d4a8-5bf4-4a3cd1530aaa",
+			"headers": "",
+			"headerData": [],
+			"url": "{{BASE_API_URI}}/statistics",
+			"queryParams": [],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "GET",
+			"data": null,
+			"dataMode": "params",
+			"version": 2,
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1558544976194,
+			"name": "Get Temperature Statistics",
+			"description": "Returns logged temperatures",
+			"collectionId": "751f3449-7913-1fdb-2b60-2ca72804d399",
+			"responses": []
+		},
+		{
+			"id": "461f9f3a-b662-0d11-f034-1c280b5424a7",
+			"headers": "Content-Type: application/json\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "{{BASE_API_URI}}",
+			"queryParams": [],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "POST",
+			"data": [],
+			"dataMode": "raw",
+			"version": 2,
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1558544999532,
+			"name": "Add Temperature Log",
+			"description": "Add new temperature log",
+			"collectionId": "751f3449-7913-1fdb-2b60-2ca72804d399",
+			"responses": [],
+			"rawModeData": "{\n\t\"value\": 32\n}"
+		},
+		{
+			"id": "585c9628-ff6e-0f0a-a145-d9497f50307b",
+			"headers": "Content-Type: application/json\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "{{BASE_API_URI}}/5ce57e78d65d5e60f8490b26",
+			"queryParams": [],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "DELETE",
+			"data": [],
+			"dataMode": "raw",
+			"version": 2,
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1558544596975,
+			"name": "Delete Temperature Log",
+			"description": "Add new temperature log",
+			"collectionId": "751f3449-7913-1fdb-2b60-2ca72804d399",
+			"responses": [],
+			"rawModeData": ""
+		},
+		{
+			"id": "9da8c7ed-7229-187e-ae2a-ae6d60671591",
+			"headers": "",
+			"headerData": [],
+			"url": "{{BASE_API_URI}}",
+			"queryParams": [],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "GET",
+			"data": null,
+			"dataMode": "params",
+			"version": 2,
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1558539875598,
+			"name": "Get Temperature Logs",
+			"description": "Returns logged temperatures",
+			"collectionId": "751f3449-7913-1fdb-2b60-2ca72804d399",
+			"responses": []
+		}
+	]
+}
