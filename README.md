@@ -4,6 +4,10 @@ This is an SPA application used to log temperatures between -100 °c and 100 °c
 
 This app was implemented as a NodeJS/Express based API Rest and Angular Material based as web client.   
 
+# Demo
+
+The Static [Demo App](https://andygarcia86.github.io/python-bi/) is based on HTML, css and javascript files.
+
 # Requirements:
 
 1. NodeJS v10.15.3: https://nodejs.org/en/download/
