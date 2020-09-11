@@ -6,7 +6,7 @@ This app was implemented as a NodeJS/Express based API Rest and Angular Material
 
 # Demo
 
-The Static [Demo App](https://andygarcia86.github.io/weather-logging-app/) is based on HTML, css and javascript files.
+The Static [Demo App](https://andygarcia86.github.io/weather-logging-app/) is based on HTML, CSS, and javascript files. The demo app is a static version of the actual application with the same look and feels and some basic functionalities.
 
 # Requirements:
 
