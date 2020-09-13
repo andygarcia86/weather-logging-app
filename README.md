@@ -4,6 +4,10 @@ This is an SPA application used to log temperatures between -100 °c and 100 °c
 
 This app was implemented as a NodeJS/Express based API Rest and Angular Material based as web client.   
 
+# Demo
+
+The Static [Demo App](https://andygarcia86.github.io/weather-logging-app/) is based on HTML, CSS, and javascript files. The demo app is a static version of the actual application with the same look and feels and some basic functionalities.
+
 # Requirements:
 
 1. NodeJS v10.15.3: https://nodejs.org/en/download/
