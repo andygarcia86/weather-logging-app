@@ -1,3 +1,4 @@
 /server/node_modules
 /client/node_modules
 /client/.editorconfig
+/client-angular/node_modules
