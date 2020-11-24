@@ -1,20 +1,18 @@
 <template>
   <div id="app">
-    <TopHeader/>
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <NavBar/>
+
+    <router-view/>
   </div>
 </template>
 
 <script>
-import TopHeader from './components/TopHeader.vue'
-import HelloWorld from './components/HelloWorld.vue'
+import NavBar from './components/Navbar.vue';
 
 export default {
   name: 'App',
-  components: {
-    TopHeader,
-    HelloWorld
+  components:{
+    NavBar,
   }
 }
 </script>
@@ -26,6 +24,18 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+}
+
+#nav {
+  padding: 30px;
+}
+
+#nav a {
+  font-weight: bold;
+  color: #2c3e50;
+}
+
+#nav a.router-link-exact-active {
+  color: #42b983;
 }
 </style>
