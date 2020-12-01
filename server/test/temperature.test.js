@@ -11,7 +11,7 @@ describe('Should return the maximun value of the list', () => {
         3. Crate method for get each statistcs
         */
 
-        assert.equal(1 + 1, 2);
+        assert.strictEqual(1 + 1, 2);
     });
 
 });
