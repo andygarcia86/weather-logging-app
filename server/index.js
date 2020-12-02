@@ -5,7 +5,7 @@ const swaggerDocument = require('./swagger.json');
 const morgan = require('morgan');
 const cors = require('cors');
 const app = express();
-const { mongoose } = require('./database')//import
+const { mongoose } = require('./database') //import
 
 //Settings
 app.set('port', process.env.PORT || global.gConfig.node_port);
@@ -19,8 +19,9 @@ app.use(cors({ origin: global.gConfig.allow_cors }));
 app.use('/', swaggerUi.serve);
 app.get('/', swaggerUi.setup(swaggerDocument));
 app.use('/api', require('./routes/temperature.routes'));
+app.use('/api', require('./routes/pdf.routes'));
 
 //Starting server
-app.listen(app.get('port'), ()=>{
+app.listen(app.get('port'), () => {
     console.log('Server on port', app.get('port'));
 });

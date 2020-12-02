@@ -3,12 +3,12 @@ const router = express.Router();
 
 const temperatureCtrl = require('../controllers/temperature.controller');
 
-router.get('/', temperatureCtrl.getLogs);
+router.get('/temperature', temperatureCtrl.getLogs);
 
-router.get('/statistics', temperatureCtrl.getStatistics);
+router.get('/temperature/statistics', temperatureCtrl.getStatistics);
 
-router.post('/', temperatureCtrl.addLog);
+router.post('/temperature', temperatureCtrl.addLog);
 
-router.delete('/:id', temperatureCtrl.deleteLog);
+router.delete('/temperature:id', temperatureCtrl.deleteLog);
 
 module.exports = router;

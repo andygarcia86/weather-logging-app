@@ -16,7 +16,9 @@
         "lodash": "^4.17.15",
         "mongoose": "^5.5.10",
         "morgan": "^1.9.1",
-        "swagger-ui-express": "^4.0.4"
+        "swagger-ui-express": "^4.0.4",
+        "image-data-uri": "^2.0.1",
+        "jspdf": "^2.1.1"
     },
     "devDependencies": {
         "mocha": "^8.1.3",
