@@ -1,137 +1,132 @@
 {
-  "swagger": "2.0",
-  "info": {
-    "version": "1.0",
-    "title": "Weather Logging RestApi",
-    "description": "Weather logging rest api that allows users to enter temperatures in order to calculate its median, average, highest and lowest points.",
-    "contact": {}
-  },
-  "host": "localhost:3000",
-  "basePath": "/api",
-  "schemes": [
-    "http"
-  ],
-  "consumes": [
-    "application/json"
-  ],
-  "produces": [
-    "application/json"
-  ],
-  "paths": {
-    "/": {
-      "get": {
-        "tags": ["Temperature"],
-        "description": "Returns logged temperatures",
-        "summary": "Get Temperature Logs",
-        "operationId": "UnnammedEndpointGet",
-        "deprecated": false,
-        "produces": [
-          "application/json"
-        ],
-        "parameters": [],
-        "responses": {
-          "200": {
-            "description": "",
-            "headers": {}
-          }
-        }
-      },
-      "post": {
-        "tags": ["Temperature"],
-        "description": "Add new temperature log",
-        "summary": "Add Temperature Log",
-        "operationId": "UnnammedEndpointPost",
-        "deprecated": false,
-        "produces": [
-          "application/json"
-        ],
-        "parameters": [
-          {
-            "name": "Body",
-            "in": "body",
-            "required": true,
-            "description": "",
-            "schema": {
-              "$ref": "#/definitions/AddTemperatureLogRequest"
+    "swagger": "2.0",
+    "info": {
+        "version": "1.0",
+        "title": "Weather Logging RestApi",
+        "description": "Weather logging rest api that allows users to enter temperatures in order to calculate its median, average, highest and lowest points.",
+        "contact": {}
+    },
+    "host": "localhost:3000",
+    "basePath": "/api",
+    "schemes": [
+        "http"
+    ],
+    "consumes": [
+        "application/json"
+    ],
+    "produces": [
+        "application/json"
+    ],
+    "paths": {
+        "/temperatue": {
+            "get": {
+                "tags": ["Temperature"],
+                "description": "Returns logged temperatures",
+                "summary": "Get Temperature Logs",
+                "operationId": "UnnammedEndpointGet",
+                "deprecated": false,
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "headers": {}
+                    }
+                }
+            },
+            "post": {
+                "tags": ["Temperature"],
+                "description": "Add new temperature log",
+                "summary": "Add Temperature Log",
+                "operationId": "UnnammedEndpointPost",
+                "deprecated": false,
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [{
+                    "name": "Body",
+                    "in": "body",
+                    "required": true,
+                    "description": "",
+                    "schema": {
+                        "$ref": "#/definitions/AddTemperatureLogRequest"
+                    }
+                }],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "headers": {}
+                    }
+                }
             }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "",
-            "headers": {}
-          }
+        },
+        "/temperatue/statistics": {
+            "get": {
+                "tags": ["Temperature"],
+                "description": "Returns logged temperatures",
+                "summary": "Get Temperature Statistics",
+                "operationId": "StatisticsGet",
+                "deprecated": false,
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "headers": {}
+                    }
+                }
+            }
+        },
+        "/temperatue/{id}": {
+            "delete": {
+                "tags": ["Temperature"],
+                "description": "Delete temperature log",
+                "summary": "Delete Temperature Log",
+                "operationId": "id",
+                "deprecated": false,
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [{
+                    "name": "id",
+                    "in": "path",
+                    "required": true,
+                    "type": "string",
+                    "description": ""
+                }],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "headers": {}
+                    }
+                }
+            }
         }
-      }
     },
-    "/statistics": {
-      "get": {
-        "tags": ["Temperature"],
-        "description": "Returns logged temperatures",
-        "summary": "Get Temperature Statistics",
-        "operationId": "StatisticsGet",
-        "deprecated": false,
-        "produces": [
-          "application/json"
-        ],
-        "parameters": [],
-        "responses": {
-          "200": {
-            "description": "",
-            "headers": {}
-          }
+    "definitions": {
+        "AddTemperatureLogRequest": {
+            "title": "Add Temperature Log Request",
+            "example": {
+                "value": 32
+            },
+            "type": "object",
+            "properties": {
+                "value": {
+                    "type": "integer",
+                    "format": "int32"
+                }
+            },
+            "required": [
+                "value"
+            ]
         }
-      }
     },
-    "/{id}": {
-      "delete": {
-        "tags": ["Temperature"],
-        "description": "Delete temperature log",
-        "summary": "Delete Temperature Log",
-        "operationId": "id",
-        "deprecated": false,
-        "produces": [
-          "application/json"
-        ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "type": "string",
-            "description": ""
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "",
-            "headers": {}
-          }
-        }
-      }
-    }
-  },
-  "definitions": {
-    "AddTemperatureLogRequest": {
-      "title": "Add Temperature Log Request",
-      "example": {
-        "value": 32
-      },
-      "type": "object",
-      "properties": {
-        "value": {
-          "type": "integer",
-          "format": "int32"
-        }
-      },
-      "required": [
-        "value"
-      ]
-    }
-  },
-  "tags": [{
-      "name": "Temperature",
-      "description": "Temperature logs management"
-    }
-  ]
+    "tags": [{
+        "name": "Temperature",
+        "description": "Temperature logs management"
+    }]
 }
